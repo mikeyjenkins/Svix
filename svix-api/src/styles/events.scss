@@ -39,3 +39,12 @@
         }
     }
 }
+
+
+#primary_btn {
+    background-color: #028FFA; 
+    border-color: #028FFA;
+    &:hover{
+        background-color: #0685e6;
+    }
+}
