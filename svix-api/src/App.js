@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useState } from "react";
+import "./styles/events.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as eventAPI from "./api/EventsAPI";
+import Button from "react-bootstrap/Button";
+import AddIcon from "@mui/icons-material/Add";
+import CreateEventModal from "./components/CreateEventModal";
 
 function App() {
+  const [showCreateModal, setShowCreateModal] = useState(false);
+
+  const createEvent = (event) => {
+    eventAPI.createEvent(event).then(() => {});
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button
+        id="primary_btn"
+        size="sm"
+        onClick={() => setShowCreateModal(true)}
+      >
+        <AddIcon />
+      </Button>{" "}
+      <CreateEventModal
+        show={showCreateModal}
+        setShowCreateModal={setShowCreateModal}
+        createEvent={createEvent}
+      />
     </div>
   );
 }
