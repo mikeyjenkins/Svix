@@ -28,7 +28,7 @@ export const EditModal = ({event, setShowEditModal, show, updateEvent, deleteEve
                         <Form.Control value={newEventObject.description} name="description" onChange={(e) => handleChange(e)} placeholder="Enter Description" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formName">
-                        <Form.Label>Feature Flag (optional)</Form.Label>
+                        <Form.Label>Feature Flag <i className="text-muted">(optional)</i></Form.Label>
                         <Form.Control value={newEventObject.featureFlag || ""} name="featureFlag" onChange={(e) => handleChange(e)} placeholder="Enter Feature Flag" />
                     </Form.Group>
                 </Form>

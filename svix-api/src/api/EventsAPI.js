@@ -1,6 +1,7 @@
 import { svix } from "./Svix";
 
 //function to create an event type through Svix connection
+//TODO: add functionality/UI for schemas 
 export const createEvent = async (event) => {
   return new Promise(async (resolve, reject) => {
     await svix.eventType
@@ -33,3 +34,20 @@ export const listEvents = () => {
     });
   };
 
+  //update event using svix API
+  //TODO: add update for schemas
+  export const updateEvent = (event) => {
+    return new Promise(async (resolve, reject) => {
+      await svix.eventType
+        .update(event.name, {
+          description: event.description,
+          featureFlag: event.featureFlag,
+        })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };

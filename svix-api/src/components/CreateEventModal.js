@@ -38,7 +38,7 @@ export const CreateEventModal = ({show, setShowCreateModal, createEvent }) => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formName">
-            <Form.Label>Feature Flag (optional)</Form.Label>
+            <Form.Label>Feature Flag <i className="text-muted">(optional)</i></Form.Label>
             <Form.Control
               name="featureFlag"
               onChange={(e) => handleChange(e)}

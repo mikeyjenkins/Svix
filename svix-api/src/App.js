@@ -15,14 +15,28 @@ function App() {
   const [events, setEvents] = useState([]);
   const [currentEvent, setCurrentEvent] = useState();
 
+  //create event and update events list with new event
   const createEvent = (event) => {
-    eventAPI.createEvent(event).then(() => {});
+    eventAPI.createEvent(event).then((res) => {
+      setEvents([...events, res]);
+      setShowCreateModal(false);
+    });
+  };
+
+  //update event and call list API to get updated value
+  //TODO: update state using update result rather than recalling list API
+  const updateEvent = (event) => {
+    eventAPI.updateEvent(event).then(() => {
+      listEvents();
+      //close edit modal after update
+      setShowEditModal(false);
+    });
   };
 
   const listEvents = () => {
     eventAPI.listEvents().then((res) => {
       //update events state to match result from API call
-      setEvents(res);
+      setEvents(res)
     });
   };
 
@@ -69,6 +83,7 @@ function App() {
           event={currentEvent}
           show={showEditModal}
           setShowEditModal={setShowEditModal}
+          updateEvent={updateEvent}
         />}
       </div>
     </div>
