@@ -8,6 +8,7 @@ import CreateEventModal from "./components/CreateEventModal";
 import ListGroup from "react-bootstrap/ListGroup";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EditModal from "./components/EditEventModal";
+import _ from 'lodash';
 
 function App() {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -39,6 +40,14 @@ function App() {
       setEvents(res)
     });
   };
+
+  const deleteEvent = (event) => {
+    eventAPI.deleteEvent(event).then(() => {
+      //remove event from list without recalling list API
+      setEvents(_.remove([...events], (evt) => evt !== event))
+    })
+    setShowEditModal(false);
+  }
 
   //get list of events when page renders
   useEffect(() => {
@@ -84,6 +93,7 @@ function App() {
           show={showEditModal}
           setShowEditModal={setShowEditModal}
           updateEvent={updateEvent}
+          deleteEvent={deleteEvent}
         />}
       </div>
     </div>

@@ -51,3 +51,17 @@ export const listEvents = () => {
         });
     });
   };
+
+
+  export const deleteEvent = async (event) => {
+    return new Promise(async (resolve, reject) => {
+      await svix.eventType
+        .delete(event.name)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
