@@ -19,3 +19,17 @@ export const createEvent = async (event) => {
   });
 };
 
+//function to list events from Svix client
+export const listEvents = () => {
+    return new Promise(async (resolve, reject) => {
+      await svix.eventType
+        .list()
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
