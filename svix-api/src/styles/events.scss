@@ -1,5 +1,6 @@
 .events_page_wrapper {
     height: 100vh;
+    padding: 50px;
 
     .events_component {
         margin: auto;
@@ -10,10 +11,18 @@
         padding: 10px;
         border-radius: 5px;
         background-color: #F7FAFC;
+        height: 400px;
+        overflow: scroll;
 
         .events_header {
             display: flex;
+            align-items: center;
             justify-content: space-between;
+            margin: 5px 0px;
+        }
+        .no_events_filler {
+            padding: 30px;
+            text-align: center;
         }
 
         .events_list {

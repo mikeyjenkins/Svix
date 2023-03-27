@@ -8,7 +8,7 @@ import CreateEventModal from "./components/CreateEventModal";
 import ListGroup from "react-bootstrap/ListGroup";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EditModal from "./components/EditEventModal";
-import _ from 'lodash';
+import _ from "lodash";
 
 function App() {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -37,17 +37,17 @@ function App() {
   const listEvents = () => {
     eventAPI.listEvents().then((res) => {
       //update events state to match result from API call
-      setEvents(res)
+      setEvents(res);
     });
   };
 
   const deleteEvent = (event) => {
     eventAPI.deleteEvent(event).then(() => {
       //remove event from list without recalling list API
-      setEvents(_.remove([...events], (evt) => evt !== event))
-    })
+      setEvents(_.remove([...events], (evt) => evt !== event));
+    });
     setShowEditModal(false);
-  }
+  };
 
   //get list of events when page renders
   useEffect(() => {
@@ -82,19 +82,28 @@ function App() {
               </ListGroup.Item>
             ))}
           </ListGroup>
+          {events.length === 0 && (
+            <div className="no_events_filler">
+              <i className="text-muted">
+                Click the button above to get started creating events
+              </i>
+            </div>
+          )}
         </div>
         <CreateEventModal
           show={showCreateModal}
           setShowCreateModal={setShowCreateModal}
           createEvent={createEvent}
         />
-        {showEditModal && <EditModal
-          event={currentEvent}
-          show={showEditModal}
-          setShowEditModal={setShowEditModal}
-          updateEvent={updateEvent}
-          deleteEvent={deleteEvent}
-        />}
+        {showEditModal && (
+          <EditModal
+            event={currentEvent}
+            show={showEditModal}
+            setShowEditModal={setShowEditModal}
+            updateEvent={updateEvent}
+            deleteEvent={deleteEvent}
+          />
+        )}
       </div>
     </div>
   );
